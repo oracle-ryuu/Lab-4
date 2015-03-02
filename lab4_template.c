@@ -54,7 +54,7 @@ float median(int num, ...) {
     numpop = num/2;
     int i;
     for (i=0; i<numpop; i++){
-      printf("%i", va_arg (myList, int));
+       va_arg (myList, int);
      
 }
 
@@ -72,18 +72,85 @@ float median(int num, ...) {
   return average;
 }
 
-int mode(int num, ...) {
+int mode(int num, ...)
+{
 
   va_list myList;
   va_start (myList, num);
-  va_end (myList);  
+   
+  int iscounting;
+  int countone;
+  int highestcount;
+  int counttwo;
+  int c,d,swap;
 
 
+  int intarray [num];
+
+
+  int i;
+  for (i=0 ; i<num; i++){
+    intarray[i]=va_arg (myList,int);
+
+}
+
+  for (i=0 ; i<num; i++){
+    printf ("%d", intarray[i]);
+}
+  printf("/n");
+for (c = 0 ; c < ( num - 1 ); c++)
+  {
+    for (d = 0 ; d < num - c - 1; d++)
+    {
+      if (intarray[d] > intarray[d+1]) /* For decreasing order use < */
+      {
+        swap          = intarray[d];
+        intarray[d]   = intarray[d+1];
+        intarray[d+1] = swap;
+      }
+    }
+  }
+ highestcount = 0;
+ counttwo =0;
+
+
+ iscounting = intarray[0];
+ countone=1;
+ for (i=1; i<num; i++)
+   {
+   if (intarray[i]==iscounting)
+     {
+     countone++;
+     }
+   else 
+     {
+       if( countone == counttwo)
+	 {
+	   if (highestcount > iscounting ){highestcount = iscounting;} 
+	 }
+
+       if(countone > counttwo)
+	 {
+	   highestcount = iscounting;
+	   counttwo = countone;
+	 }
+
+       iscounting =intarray[i];
+       countone=1;
+
+     }
+
+
+   }
+
+
+
+  va_end (myList);
 
 
  /* This function definition is obviously incorrect and needs to be
      replaced. */
-  return 0;
+  return highestcount;
 }
 
 int main() {
@@ -95,7 +162,7 @@ int main() {
   printf("the median is %f",  median (4, 1,2,3,4));
   /* special case: even number of arguments */
   //assert(median(2, 1, 2) == 1.5);
-
+  printf("the modn is %d", mode(6, 1,1,2,2,2,3));
   /* straightforward three-argument cases */
   // assert(median(3, 1, 2, 3) == 2);
   //assert(median(3, 3, 2, 1) == 2);
