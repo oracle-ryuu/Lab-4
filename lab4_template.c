@@ -24,7 +24,7 @@ float median(int num, ...);
    is the most frequently-ocurring value. If there are multiple values
    tied for the same number of occurences, return the lesser of the
    tied values.
- */
+*/
 int mode(int num, ...);
 //--------------------------------------------
 
@@ -48,65 +48,65 @@ float median(int num, ...) {
     int i; 
     for (i=0; i<numpop; i++){
       va_arg (myList,int);
-}
-
- for(a=0; a<2; a++){
-    medarray[a]=va_arg(myList, int);
-}
- int e,f,swap;
-
-for (e = 0 ; e < ( num - 1 ); e++)
-  {
-    for (f = 0 ; f < num - e - 1; f++)
-    {
-      if (medarray[f] >medarray[f+1]) /* For decreasing order use < */
-      {
-        swap       = medarray[f];
-        medarray[f]   = medarray[f+1];
-        medarray[f+1] = swap;
-      }
     }
-  }
+
+    for(a=0; a<2; a++){
+      medarray[a]=va_arg(myList, int);
+    }
+    int e,f,swap;
+
+    for (e = 0 ; e < ( num - 1 ); e++)
+      {
+	for (f = 0 ; f < num - e - 1; f++)
+	  {
+	    if (medarray[f] >medarray[f+1]) /* For decreasing order use < */
+	      {
+		swap       = medarray[f];
+		medarray[f]   = medarray[f+1];
+		medarray[f+1] = swap;
+	      }
+	  }
+      }
  
 
- average = medarray[0];
- average = average + medarray[1];
+    average = medarray[0];
+    average = average + medarray[1];
     average = average/2;
     printf("i am here(even)");   
-}
+  }
 
   else {
     numpop = num/2;
     int i;
     for (i=0; i<numpop; i++){
-       va_arg (myList, int);
+      va_arg (myList, int);
      
-}
-
-for(a=0; a<2; a++){
-    medarray[a]=va_arg(myList, int);
-}
-
- int g,h,swap;
-for (g = 0 ; g < ( num - 1 ); g++)
-  {
-    for (h = 0 ; h < num - g - 1; h++)
-    {
-      if (medarray[h] > medarray[h+1]) /* For decreasing order use < */
-      {
-        swap       = medarray[h];
-        medarray[h]   = medarray[h+1];
-       medarray[h+1] = swap;
-      }
     }
-  }
+
+    for(a=0; a<2; a++){
+      medarray[a]=va_arg(myList, int);
+    }
+
+    int g,h,swap;
+    for (g = 0 ; g < ( num - 1 ); g++)
+      {
+	for (h = 0 ; h < num - g - 1; h++)
+	  {
+	    if (medarray[h] > medarray[h+1]) /* For decreasing order use < */
+	      {
+		swap       = medarray[h];
+		medarray[h]   = medarray[h+1];
+		medarray[h+1] = swap;
+	      }
+	  }
+      }
  
 
 
     average = medarray[0];
     printf("i am here(odd)");
    
- }
+  }
 
 
 
@@ -137,63 +137,63 @@ int mode(int num, ...)
   for (i=0 ; i<num; i++){
     intarray[i]=va_arg (myList,int);
 
-}
+  }
 
   for (i=0 ; i<num; i++){
     printf ("%d", intarray[i]);
-}
-  printf("/n");
-for (c = 0 ; c < ( num - 1 ); c++)
-  {
-    for (d = 0 ; d < num - c - 1; d++)
-    {
-      if (intarray[d] > intarray[d+1]) /* For decreasing order use < */
-      {
-        swap          = intarray[d];
-        intarray[d]   = intarray[d+1];
-        intarray[d+1] = swap;
-      }
-    }
   }
- highestcount = 0;
- counttwo =0;
+  printf("/n");
+  for (c = 0 ; c < ( num - 1 ); c++)
+    {
+      for (d = 0 ; d < num - c - 1; d++)
+	{
+	  if (intarray[d] > intarray[d+1]) /* For decreasing order use < */
+	    {
+	      swap          = intarray[d];
+	      intarray[d]   = intarray[d+1];
+	      intarray[d+1] = swap;
+	    }
+	}
+    }
+  highestcount = 0;
+  counttwo =0;
 
 
- iscounting = intarray[0];
- countone=1;
- for (i=1; i<num; i++)
-   {
-   if (intarray[i]==iscounting)
-     {
-     countone++;
-     }
-   else 
-     {
-       if( countone == counttwo)
-	 {
-	   if (highestcount > iscounting ){highestcount = iscounting;} 
-	 }
+  iscounting = intarray[0];
+  countone=1;
+  for (i=1; i<num; i++)
+    {
+      if (intarray[i]==iscounting)
+	{
+	  countone++;
+	}
+      else 
+	{
+	  if( countone == counttwo)
+	    {
+	      if (highestcount > iscounting ){highestcount = iscounting;} 
+	    }
 
-       if(countone > counttwo)
-	 {
-	   highestcount = iscounting;
-	   counttwo = countone;
-	 }
+	  if(countone > counttwo)
+	    {
+	      highestcount = iscounting;
+	      counttwo = countone;
+	    }
 
-       iscounting =intarray[i];
-       countone=1;
+	  iscounting =intarray[i];
+	  countone=1;
 
-     }
+	}
 
 
-   }
+    }
 
 
 
   va_end (myList);
 
 
- /* This function definition is obviously incorrect and needs to be
+  /* This function definition is obviously incorrect and needs to be
      replaced. */
   return highestcount;
 }
