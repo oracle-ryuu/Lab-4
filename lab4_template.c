@@ -37,6 +37,12 @@ float median(int num, ...) {
  
   va_list myList;
   va_start (myList, num);
+
+  int medarray[num];
+  int a;
+ 
+
+
   if ((num%2)==0){ 
     numpop = (num/2)-1;
     int i; 
@@ -44,8 +50,27 @@ float median(int num, ...) {
       va_arg (myList,int);
 }
 
-    average = va_arg (myList, int);
-    average = average + va_arg (myList, int);
+ for(a=0; a<2; a++){
+    medarray[a]=va_arg(myList, int);
+}
+ int e,f,swap;
+
+for (e = 0 ; e < ( num - 1 ); e++)
+  {
+    for (f = 0 ; f < num - e - 1; f++)
+    {
+      if (medarray[f] >medarray[f+1]) /* For decreasing order use < */
+      {
+        swap       = medarray[f];
+        medarray[f]   = medarray[f+1];
+        medarray[f+1] = swap;
+      }
+    }
+  }
+ 
+
+ average = medarray[0];
+ average = average + medarray[1];
     average = average/2;
     printf("i am here(even)");   
 }
@@ -58,7 +83,27 @@ float median(int num, ...) {
      
 }
 
-    average = va_arg (myList, int);
+for(a=0; a<2; a++){
+    medarray[a]=va_arg(myList, int);
+}
+
+ int g,h,swap;
+for (g = 0 ; g < ( num - 1 ); g++)
+  {
+    for (h = 0 ; h < num - g - 1; h++)
+    {
+      if (medarray[h] > medarray[h+1]) /* For decreasing order use < */
+      {
+        swap       = medarray[h];
+        medarray[h]   = medarray[h+1];
+       medarray[h+1] = swap;
+      }
+    }
+  }
+ 
+
+
+    average = medarray[0];
     printf("i am here(odd)");
    
  }
