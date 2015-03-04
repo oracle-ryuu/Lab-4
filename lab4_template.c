@@ -30,7 +30,7 @@ int mode(int num, ...);
 
 float median(int num, ...) {
 
-  float numpop;
+  int numpop;
   numpop=0;
   float average;
   average=0;
@@ -46,13 +46,17 @@ float median(int num, ...) {
   if ((num%2)==0){ 
     numpop = (num/2)-1;
     int i; 
-    for (i=0; i<numpop; i++){
-      va_arg (myList,int);
+    for (i=0; i<num; i++){
+    medarray[i]= va_arg (myList,int);
     }
 
-    for(a=0; a<2; a++){
-      medarray[a]=va_arg(myList, int);
+    printf("the array is currently");
+
+    for (i=0; i<num; i++){
+      printf(", %d", medarray[i]);
     }
+    //    printf("this is numpop: %d", numpop);
+    
     int e,f,swap;
 
     for (e = 0 ; e < ( num - 1 ); e++)
@@ -68,24 +72,37 @@ float median(int num, ...) {
 	  }
       }
  
-
-    average = medarray[0];
-    average = average + medarray[1];
+    printf("\n---the array is now:");
+    for (i=0; i<num; i++){
+      printf(", %d", medarray[i]);
+}
+    printf("\n");
+    average = medarray[numpop];
+    numpop++;
+    average = average + medarray[numpop];
     average = average/2;
-    printf("i am here(even)");   
+    // printf("i am here(even)");   
   }
 
   else {
     numpop = num/2;
+    
     int i;
-    for (i=0; i<numpop; i++){
-      va_arg (myList, int);
+    for (i=0; i<num; i++){
+      medarray[i]=va_arg (myList, int);
      
     }
+    
+      
+    //printf("this is numpop: %d", numpop);
 
-    for(a=0; a<2; a++){
-      medarray[a]=va_arg(myList, int);
+
+    printf("the array is currently");
+
+    for(a=0; a<num; a++){
+      printf(", %d", medarray[a]);
     }
+    printf("\n\n");
 
     int g,h,swap;
     for (g = 0 ; g < ( num - 1 ); g++)
@@ -101,10 +118,14 @@ float median(int num, ...) {
 	  }
       }
  
+ printf("\n---(odd) the array is now:");
+    for (i=0; i<num; i++){
+      printf(", %d", medarray[i]);
+}
+    printf("\n\n");
 
-
-    average = medarray[0];
-    printf("i am here(odd)");
+    average = medarray[numpop];
+    // printf("i am here(odd)");
    
   }
 
@@ -138,11 +159,11 @@ int mode(int num, ...)
     intarray[i]=va_arg (myList,int);
 
   }
-
+  printf("this is the array: ");
   for (i=0 ; i<num; i++){
-    printf ("%d", intarray[i]);
+   printf (", %d", intarray[i]);
   }
-  printf("/n");
+  printf("\n");
   for (c = 0 ; c < ( num - 1 ); c++)
     {
       for (d = 0 ; d < num - c - 1; d++)
@@ -201,13 +222,30 @@ int mode(int num, ...)
 int main() {
 
   /* MEDIAN */
-
-  printf("the median is %f", median(3, 1,2,3));  /* one argument */
+  printf("beginning median testing\n");
+  
+  printf("\nthe median is: %f", median(3, 1,2,3));  /* one argument */
+  printf("\n\n\n\n");
   // assert(median(1, 1) == 1);
-  printf("the median is %f",  median (4, 1,2,3,4));
+
+  printf("\nthe median is: %f",  median (4, 1,2,3,4));
+  printf("\n\n\n");
+  printf("\n the median is: %f", median (9, 1,7,5,2,8,11,10,20,19));
+
+
+  printf("\n\nbeginning testing of the mode function\n");
   /* special case: even number of arguments */
   //assert(median(2, 1, 2) == 1.5);
-  printf("the modn is %d", mode(6, 1,1,2,2,2,3));
+  printf("the mode is\n %d", mode(6, 1,1,2,2,2,3));
+  printf("\n");
+
+
+  printf("the mode is \n %d", mode(6, 1,2,3,1,2,1));
+
+  printf("the mode is :\n%d", mode(20, 1,1,1,1,2,3,4,5,6,4,7,3,8,7,9,0,23,23,23,23));
+
+
+  printf("\n thats all\n ");
   /* straightforward three-argument cases */
   // assert(median(3, 1, 2, 3) == 2);
   //assert(median(3, 3, 2, 1) == 2);
